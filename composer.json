@@ -1,6 +1,6 @@
 {
     "name": "zoparga/billingo-laravel",
-    "description": "Simple wrapper package to Billingo invoice app API",
+    "description": "Simple wrapper package for Billingo invoice app API",
     "license": "MIT",
     "extra": {
         "laravel": {
