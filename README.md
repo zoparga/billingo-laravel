@@ -25,3 +25,43 @@ Please check the following docs folder under __docs.
 # Partners
 
 To get more information about this section, [please check this doc](./__docs/partners.md).
+
+
+# TODO
+
+Partners
+
+- [ ] update
+- [ ] delete
+
+Products
+
+- [ ] get all
+- [ ] get one by id
+- [ ] create
+- [ ] update
+- [ ] delete
+
+Invoice (document)
+
+- [ ] get all
+- [ ] get one by id
+- [ ] create final
+- [ ] create invoice
+- [ ] create receipt
+- [ ] retrieve payment history
+- [ ] update payment history
+- [ ] print pos
+- [ ] public pdf
+- [ ] send in email
+- [ ] delete
+- [ ] payment delete
+
+
+## Credits
+
+- [zoparga](https://github.com/zoparga)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
