@@ -28,14 +28,6 @@ Please check the examples under _examples folder.
 
 # TODO
 
-Products
-
-- [ ] get all
-- [ ] get one by id
-- [ ] create
-- [ ] update
-- [ ] delete
-
 Invoice (document)
 
 - [ ] get all
