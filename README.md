@@ -32,16 +32,21 @@ Invoice (document)
 
 - [ ] get all
 - [ ] get one by id
+//
 - [ ] create final
 - [ ] create invoice
 - [ ] create receipt
+//
 - [ ] retrieve payment history
 - [ ] update payment history
+- [ ] payment delete
+//
 - [ ] print pos
 - [ ] public pdf
+//
 - [ ] send in email
+//
 - [ ] delete
-- [ ] payment delete
 
 
 ## Credits
