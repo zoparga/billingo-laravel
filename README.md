@@ -22,17 +22,11 @@ BILLINGO_API_KEY=
 
 Please check the following docs folder under __docs.
 
-# Partners
+# Examples
 
-To get more information about this section, [please check this doc](./__docs/partners.md).
-
+Please check the examples under _examples folder.
 
 # TODO
-
-Partners
-
-- [ ] update
-- [ ] delete
 
 Products
 

@@ -110,7 +110,18 @@ class BillingoPartners
             throw $th;
         }
 
-        return $response;
+        return $response->body();
+    }
+
+    public function update($partnerId)
+    {
+        try {
+            $response = $this->base->put('/partners/'.$partnerId, $this->partnerData);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $response->body();
     }
 
     public function getAll()
@@ -125,5 +136,12 @@ class BillingoPartners
         $response = $this->base->get('/partners/'.$partnerId);
 
         return $response->body();
+    }
+
+    public function delete($partnerId)
+    {
+        $response = $this->base->delete('/partners/'.$partnerId);
+
+        return $response->successful();
     }
 }
