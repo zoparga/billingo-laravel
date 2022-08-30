@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 
 class CreatePartner
 {
@@ -34,7 +34,7 @@ class CreatePartner
 
         ];
 
-        return BillingoPartners::prepare()->partnerData($data)->create();
+        return BillingoPartner::prepare()->partnerData($data)->create();
     }
 
     public function result()

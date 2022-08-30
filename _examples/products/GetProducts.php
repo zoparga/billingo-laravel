@@ -1,12 +1,12 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoProducts;
+use zoparga\BillingoLaravel\BillingoProduct;
 
 class GetProducts
 {
     public function getProducts()
     {
-        return BillingoProducts::prepare()->getAll();
+        return BillingoProduct::prepare()->getAll();
     }
 
     public function result()

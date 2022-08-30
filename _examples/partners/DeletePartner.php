@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 
 class DeletePartner
 {
@@ -8,7 +8,7 @@ class DeletePartner
     // $id = 1754130525;
     public function delete($id)
     {
-        return BillingoPartners::prepare()->delete($id);
+        return BillingoPartner::prepare()->delete($id);
     }
 
     public function result()

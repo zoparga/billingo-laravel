@@ -26,13 +26,17 @@ Please check the following docs folder under __docs.
 
 Please check the examples under _examples folder.
 
+# Variables, to use
+
+Please check the examples under __docs/variables_to_use folder.
+
 # TODO
+
 
 Invoice (document)
 
-- [ ] get all
-- [ ] get one by id
-//
+
+// 
 - [ ] create final
 - [ ] create invoice
 - [ ] create receipt
@@ -47,6 +51,15 @@ Invoice (document)
 - [ ] send in email
 //
 - [ ] delete
+
+
+Bank Account
+
+ - [ ] get all
+ - [ ] get one
+ - [ ] get create
+ - [ ] get update
+ - [ ] get delete
 
 
 ## Credits

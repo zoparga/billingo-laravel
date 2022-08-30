@@ -5,7 +5,7 @@ namespace zoparga\BillingoLaravel;
 use Illuminate\Support\Facades\Http;
 use zoparga\BillingoLaravel\Validations\PartnerValidation;
 
-class BillingoPartners
+class BillingoPartner
 {
     public $base;
 

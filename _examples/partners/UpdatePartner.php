@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 
 class UpdatePartner
 {
@@ -16,7 +16,7 @@ class UpdatePartner
             'email' => 'test@test.asd',
         ];
 
-        return BillingoPartners::prepare()->partnerData($data)->update($partnerId);
+        return BillingoPartner::prepare()->partnerData($data)->update($partnerId);
     }
 
     public function result()

@@ -1,0 +1,19 @@
+```php
+  public const ENTITLEMENT = [
+        'AAM',
+        'ANTIQUES',
+        'ARTWORK',
+        'ATK',
+        'EAM',
+        'EUE',
+        'EUFAD37',
+        'EUFADE',
+        'HO',
+        'KBAET',
+        'NAM_1',
+        'NAM_2',
+        'SECOND_HAND',
+        'TAM',
+        'TRAVEL_AGENCY',
+    ];
+```

@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 
 class GetOnePartner
 {
@@ -8,7 +8,7 @@ class GetOnePartner
     // $id = 1754130525;
     public function getOne($id)
     {
-        return BillingoPartners::prepare()->getOne($id);
+        return BillingoPartner::prepare()->getOne($id);
     }
 
     public function result()

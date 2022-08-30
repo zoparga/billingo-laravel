@@ -15,7 +15,7 @@ The following fields are required:
 
 ```php
 // AUTOLOAD WITH THE FOLLOWING LINE
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 ```
 
 ```php
@@ -28,13 +28,13 @@ $data = [
     'address' => 'Fő utca 40.',
 ];
 
-$response = BillingoPartners::prepare()->partnerData($data)->create();
+$response = BillingoPartner::prepare()->partnerData($data)->create();
 ```
 
 ## Get all partners
 
 ```php 
-$response = BillingoPartners::prepare()->getAll();
+$response = BillingoPartner::prepare()->getAll();
 ```
 
 ## Get One partner by Billingo Partner Id
@@ -42,5 +42,5 @@ $response = BillingoPartners::prepare()->getAll();
 ```php
 $billingoPartnerId = 1754130525;
 
-$response = BillingoPartners::prepare()->getOne($billingoPartnerId);
+$response = BillingoPartner::prepare()->getOne($billingoPartnerId);
 ```

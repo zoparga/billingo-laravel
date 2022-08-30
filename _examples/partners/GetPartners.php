@@ -1,12 +1,12 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoPartners;
+use zoparga\BillingoLaravel\BillingoPartner;
 
 class GetPartners
 {
     public function getPartners()
     {
-        return BillingoPartners::prepare()->getAll();
+        return BillingoPartner::prepare()->getAll();
     }
 
     public function result()

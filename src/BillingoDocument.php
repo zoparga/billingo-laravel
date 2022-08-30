@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use zoparga\BillingoLaravel\Validations\DocumentValidation;
 
-class BillingoDocuments
+class BillingoDocument
 {
     public $base;
 
@@ -17,6 +17,20 @@ class BillingoDocuments
     public $discount;
 
     public $settings;
+
+    public $partner_id;
+
+    public $block_id;
+
+    public $bank_account_id;
+
+    public $type;
+
+    public $fulfillment_date;
+
+    public $due_date;
+
+    public $payment_method;
 
     public function __construct()
     {
@@ -52,15 +66,19 @@ class BillingoDocuments
         //     ]
         // ];
         $this->itemsData = $itemsData;
+
+        return $this;
     }
 
+    // $discount = [
+    //     "type" => "percent",
+    //     "value" => 0
+    // ];
     public function discount($discount)
     {
-        // $discount = [
-        //     "type" => "percent",
-        //     "value" => 0
-        // ];
         $this->discount = $discount;
+
+        return $this;
     }
 
     public function settings($settings)
@@ -75,11 +93,74 @@ class BillingoDocuments
             'place_id' => $settings['place_id'] ?? 0,
             'instant_payment' => $settings['instant_payment'] ?? true,
             'selected_type' => $settings['selected_type'] ?? 'advance',
+
         ];
+
+        return $this;
+    }
+
+    public function partnerId($partnerId)
+    {
+        $this->partner_id = $partnerId;
+
+        return $this;
+    }
+
+    public function bacnkAccountId($bankAccountId)
+    {
+        $this->bank_account_id = $bankAccountId;
+
+        return $this;
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function fulfillmentDate($fulfillmentDate)
+    {
+        $this->fulfillment_date = $fulfillmentDate;
+
+        return $this;
+    }
+
+    public function dueDate($dueDate)
+    {
+        $this->due_date = $dueDate;
+
+        return $this;
+    }
+
+    public function paymentMethod($paymentMethod)
+    {
+        $this->payment_method = $paymentMethod;
+
+        return $this;
+    }
+
+    public function setDefaults()
+    {
+        if (! $this->type) {
+            $this->type = 'proforma';
+        }
+        if (! $this->fulfillment_date) {
+            $this->fulfillment_date = Carbon::now()->format('Y-m-d');
+        }
+        if (! $this->due_date) {
+            $this->due_date = Carbon::now()->addDays(8)->format('Y-m-d');
+        }
+        if (! $this->payment_method) {
+            $this->payment_method = 'elore_utalas';
+        }
     }
 
     public function documentData($documentData)
     {
+        $this->setDefaults();
+
         try {
             //$validated = (new DocumentValidation)->validateInfo($documentData);
 
@@ -95,29 +176,35 @@ class BillingoDocuments
                 'general_ledger_taxcode' => $documentData['general_ledger_taxcode'] ?? null,
                 'entitlement' => $documentData['entitlement'] ?? null,
 
-                'vendor_id' => $documentData['partner_id'] ?? 'string',
+                'vendor_id' => $documentData['vendor_id'] ?? uniqid(),
                 'partner_id' => $documentData['partner_id'] ?? null,
-                'block_id' => $documentData['block_id'] ?? null,
-                'bank_account_id' => $documentData['bank_account_id'] ?? null,
-                'type' => $documentData['type'] ?? null,
-                'fulfillment_date' => $documentData['fulfillment_date'] ?? null,
-                'due_date' => $documentData['due_date'] ?? Carbon::now()->addDays(8),
-                'payment_method' => $documentData['payment_method'] ?? 'transfer',
+                'block_id' => $documentData['block_id'] ?? 'invoice',
+                'bank_account_id' => $documentData['bank_account_id'] ?? 0,
+                'type' => $this->type,
+                'fulfillment_date' => $this->fulfillment_date,
+                'due_date' => $this->due_date,
+                'payment_method' => $this->payment_method,
                 'language' => $documentData['language'] ?? 'hu',
                 'currency' => $documentData['currency'] ?? 'HUF',
                 'conversion_rate' => $documentData['conversion_rate'] ?? 1,
                 'electronic' => $documentData['electronic'] ?? false,
                 'paid' => $documentData['paid'] ?? false,
                 'items' => $this->itemsData,
-                'comment' => $documentData['comment'] ?? null,
+                'comment' => $documentData['comment'] ?? '',
                 'settings' => $this->settings,
-                'advance_invoice' => [
-                    $documentData['advance_invoice'] ?? 0,
-                ],
-                'discount' => $this->discount,
+
                 'instant_payment' => $documentData['instant_payment'] ?? null,
 
             ];
+
+            if ($this->discount) {
+                $this->documentData['discount'] = $this->discount;
+            }
+            if (isset($documentData['advance_invoice'])) {
+                $this->documentData['advance_invoice'] = [
+                    $documentData['advance_invoice'],
+                ];
+            }
             //}
 
             return $this;

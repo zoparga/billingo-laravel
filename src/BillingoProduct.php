@@ -5,7 +5,7 @@ namespace zoparga\BillingoLaravel;
 use Illuminate\Support\Facades\Http;
 use zoparga\BillingoLaravel\Validations\ProductValidation;
 
-class BillingoProducts
+class BillingoProduct
 {
     public $base;
 

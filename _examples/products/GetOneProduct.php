@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoProducts;
+use zoparga\BillingoLaravel\BillingoProduct;
 
 class GetOneProduct
 {
@@ -8,7 +8,7 @@ class GetOneProduct
     // $id = 1754130525;
     public function getOne($id)
     {
-        return BillingoProducts::prepare()->getOne($id);
+        return BillingoProduct::prepare()->getOne($id);
     }
 
     public function result()

@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoProducts;
+use zoparga\BillingoLaravel\BillingoProduct;
 
 class CreateProduct
 {
@@ -16,7 +16,7 @@ class CreateProduct
             'entitlement' => 'EUE',
         ];
 
-        return BillingoProducts::prepare()->productData($productData)->create();
+        return BillingoProduct::prepare()->productData($productData)->create();
     }
 
     public function result()

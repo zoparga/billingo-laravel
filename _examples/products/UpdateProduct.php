@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoProducts;
+use zoparga\BillingoLaravel\BillingoProduct;
 
 class UpdateProduct
 {
@@ -17,7 +17,7 @@ class UpdateProduct
             'entitlement' => 'AAM',
         ];
 
-        return BillingoProducts::prepare()->productData($productData)->update($productId);
+        return BillingoProduct::prepare()->productData($productData)->update($productId);
     }
 
     public function result()

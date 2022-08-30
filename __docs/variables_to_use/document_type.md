@@ -1,0 +1,21 @@
+```php
+public const DOCUMENT_TYPE = [
+        'advance',
+        'cancellation',
+        'cert_of_completion',
+        'd_cert_of_completion',
+        'dossier',
+        'draft',
+        'draft_offer',
+        'draft_order_form',
+        'draft_waybill',
+        'invoice',
+        'modification',
+        'offer',
+        'order_form',
+        'proforma',
+        'receipt',
+        'receipt_cancellation',
+        'waybill',
+    ];
+```

@@ -1,6 +1,6 @@
 <?php
 
-use zoparga\BillingoLaravel\BillingoProducts;
+use zoparga\BillingoLaravel\BillingoProduct;
 
 class DeleteProduct
 {
@@ -8,7 +8,7 @@ class DeleteProduct
     // $id = 1754130525;
     public function delete($id)
     {
-        return BillingoProducts::prepare()->delete($id);
+        return BillingoProduct::prepare()->delete($id);
     }
 
     public function result()
