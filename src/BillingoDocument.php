@@ -32,6 +32,8 @@ class BillingoDocument
 
     public $payment_method;
 
+    public $toEmails;
+
     public function __construct()
     {
         $url = 'https://api.billingo.hu/v3';
@@ -141,6 +143,13 @@ class BillingoDocument
         return $this;
     }
 
+    public function toEmails($toEmails)
+    {
+        $this->toEmails['emails'] = $toEmails;
+
+        return $this;
+    }
+
     public function setDefaults()
     {
         if (! $this->type) {
@@ -238,6 +247,20 @@ class BillingoDocument
         return $response->body();
     }
 
+    public function delete($documentId)
+    {
+        $response = $this->base->delete('/documents/'.$documentId);
+
+        return $response->successful();
+    }
+
+    public function sendEmail($documentId)
+    {
+        $response = $this->base->post('/documents/'.$documentId.'/send', $this->toEmails);
+
+        return $response->body();
+    }
+
     // public function update($documentId)
     // {
     //     try {
@@ -247,12 +270,5 @@ class BillingoDocument
     //     }
 
     //     return $response->body();
-    // }
-
-    // public function delete($documentId)
-    // {
-    //     $response = $this->base->delete('/documents/'.$documentId);
-
-    //     return $response->successful();
     // }
 }

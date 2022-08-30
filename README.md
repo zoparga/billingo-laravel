@@ -41,16 +41,8 @@ Invoice (document)
 - [ ] create invoice
 - [ ] create receipt
 //
-- [ ] retrieve payment history
-- [ ] update payment history
-- [ ] payment delete
-//
 - [ ] print pos
 - [ ] public pdf
-//
-- [ ] send in email
-//
-- [ ] delete
 
 
 Bank Account
