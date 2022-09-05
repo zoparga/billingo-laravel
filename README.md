@@ -33,17 +33,15 @@ Please check the examples under __docs/variables_to_use folder.
 # TODO
 
 Invoice (document)
-// 
-- [ ] create final
-- [ ] create invoice
-- [ ] create receipt
 //
 - [ ] print pos
 - [ ] public pdf
 
 ## Need to fill before live
 - get API key
-- get different "számlatömb", give API values to config
+    - get here [https://app.billingo.hu/api-key](https://app.billingo.hu/api-key)
+- get different "számlatömb", give API values to the config/env file
+    - get here [https://app.billingo.hu/document-block/list](https://app.billingo.hu/document-block/list)
 
 # FUTURE PLAN
 

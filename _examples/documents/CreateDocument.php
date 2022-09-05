@@ -15,7 +15,6 @@ class GetDocuments
 
         $documentData = [
             'partner_id' => 1754413391,
-            'block_id' => 159494,
             'bank_account_id' => null,
         ];
 

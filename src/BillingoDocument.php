@@ -34,6 +34,8 @@ class BillingoDocument
 
     public $toEmails;
 
+    public $posSize;
+
     public const DRAFT = 'draft';
 
     public const PROFORMA = 'proforma';
@@ -147,6 +149,15 @@ class BillingoDocument
     public function paymentMethod($paymentMethod)
     {
         $this->payment_method = $paymentMethod;
+
+        return $this;
+    }
+
+    public function posSize($posSize)
+    {
+        $this->posSize = [
+            'size' => $posSize,
+        ];
 
         return $this;
     }
@@ -309,6 +320,27 @@ class BillingoDocument
     public function sendEmail($documentId)
     {
         $response = $this->base->post('/documents/'.$documentId.'/send', $this->toEmails);
+
+        return $response->body();
+    }
+
+    public function printPos($documentId)
+    {
+        $response = $this->base->get('/documents/'.$documentId.'/print/pos', $this->posSize);
+
+        return $response->body();
+    }
+
+    public function download($documentId)
+    {
+        $response = $this->base->get('/documents/'.$documentId.'/download');
+
+        return $response->body();
+    }
+
+    public function publicUrl($documentId)
+    {
+        $response = $this->base->get('/documents/'.$documentId.'/public-url');
 
         return $response->body();
     }
