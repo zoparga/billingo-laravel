@@ -3,8 +3,9 @@
 namespace zoparga\BillingoLaravel\Validations;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-class PartnerValidation
+class BankAccountValidation
 {
     public function validateInfo($info)
     {
@@ -12,25 +13,23 @@ class PartnerValidation
 
             'name' => [
                 'required',
-            ],
-            'country_code' => [
-                'required',
-            ],
-            'post_code' => [
-                'required',
-            ],
-            'city' => [
-                'required',
-            ],
-            'address' => [
-                'required',
-            ],
-            'phone' => [
                 'string',
             ],
-            'emails.*' => [
+            'account_number' => [
+                'required',
                 'string',
-                'email',
+            ],
+            'account_number_iban' => [
+                'nullable',
+                'string',
+            ],
+            'swift' => [
+                'nullable',
+                'string',
+            ],
+            'currency' => [
+                'required',
+                Rule::in(ProductValidation::CURRENCIES),
             ],
 
         ]);

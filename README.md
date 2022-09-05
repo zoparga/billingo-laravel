@@ -18,7 +18,7 @@ Add your API key here, or you can extend you `.env` file:
 BILLINGO_API_KEY=
 ``` 
 
-# Docs
+# Docs are low, but examples are full!
 
 Please check the following docs folder under __docs.
 
@@ -34,8 +34,6 @@ Please check the examples under __docs/variables_to_use folder.
 
 
 Invoice (document)
-
-
 // 
 - [ ] create final
 - [ ] create invoice
@@ -44,14 +42,11 @@ Invoice (document)
 - [ ] print pos
 - [ ] public pdf
 
+# FUTURE PLAN
 
-Bank Account
+Save the different models to separate database tables.
+Interval checking, to keep sync the Billingo & local db data.
 
- - [ ] get all
- - [ ] get one
- - [ ] get create
- - [ ] get update
- - [ ] get delete
 
 
 ## Credits
