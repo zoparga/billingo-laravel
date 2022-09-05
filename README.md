@@ -32,7 +32,6 @@ Please check the examples under __docs/variables_to_use folder.
 
 # TODO
 
-
 Invoice (document)
 // 
 - [ ] create final
@@ -41,6 +40,10 @@ Invoice (document)
 //
 - [ ] print pos
 - [ ] public pdf
+
+## Need to fill before live
+- get API key
+- get different "számlatömb", give API values to config
 
 # FUTURE PLAN
 

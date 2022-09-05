@@ -34,6 +34,14 @@ class BillingoDocument
 
     public $toEmails;
 
+    public const DRAFT = 'draft';
+
+    public const PROFORMA = 'proforma';
+
+    public const INVOICE = 'invoice';
+
+    public const RECEIPT = 'receipt';
+
     public function __construct()
     {
         $url = 'https://api.billingo.hu/v3';
@@ -150,10 +158,42 @@ class BillingoDocument
         return $this;
     }
 
+    public function invoiceType()
+    {
+        $this->type = self::INVOICE;
+
+        return $this;
+    }
+
+    public function proformaType()
+    {
+        $this->type = self::PROFORMA;
+
+        return $this;
+    }
+
+    public function receiptType()
+    {
+        $this->type = self::RECEIPT;
+
+        return $this;
+    }
+
+    public function setBlockId()
+    {
+        if (! $this->block_id) {
+            if ($this->type == self::RECEIPT) {
+                $this->block_id = config('billingo-laravel.receipt_block_id');
+            } else {
+                $this->block_id = config('billingo-laravel.invoice_block_id');
+            }
+        }
+    }
+
     public function setDefaults()
     {
         if (! $this->type) {
-            $this->type = 'proforma';
+            $this->type = self::DRAFT;
         }
         if (! $this->fulfillment_date) {
             $this->fulfillment_date = Carbon::now()->format('Y-m-d');
@@ -169,6 +209,7 @@ class BillingoDocument
     public function documentData($documentData)
     {
         $this->setDefaults();
+        $this->setBlockId();
 
         try {
             //$validated = (new DocumentValidation)->validateInfo($documentData);
@@ -187,7 +228,7 @@ class BillingoDocument
 
                 'vendor_id' => $documentData['vendor_id'] ?? uniqid(),
                 'partner_id' => $documentData['partner_id'] ?? null,
-                'block_id' => $documentData['block_id'] ?? 'invoice',
+                'block_id' => $documentData['block_id'] ?? $this->block_id,
                 'bank_account_id' => $documentData['bank_account_id'] ?? 0,
                 'type' => $this->type,
                 'fulfillment_date' => $this->fulfillment_date,
@@ -233,6 +274,17 @@ class BillingoDocument
     {
         try {
             $response = $this->base->post('/documents', $this->documentData);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $response->body();
+    }
+
+    public function createReceipt()
+    {
+        try {
+            $response = $this->base->post('/documents/receipt', $this->documentData);
         } catch (\Throwable $th) {
             throw $th;
         }
