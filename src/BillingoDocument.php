@@ -36,6 +36,10 @@ class BillingoDocument
 
     public $posSize;
 
+    public $cancelDocumentData;
+
+    public $cancelReason;
+
     public const DRAFT = 'draft';
 
     public const PROFORMA = 'proforma';
@@ -165,6 +169,31 @@ class BillingoDocument
     public function toEmails($toEmails)
     {
         $this->toEmails['emails'] = $toEmails;
+
+        return $this;
+    }
+
+    public function cancelReason($reason)
+    {
+        $this->cancelReason = $reason;
+
+        return $this;
+    }
+
+    public function cancelRecipients($recipients)
+    {
+        $this->cancelRecipients = $recipients;
+
+        return $this;
+    }
+
+    public function cancelDocumentData()
+    {
+        $this->cancelDocumentData = [
+
+            'cancellation_reason' => $this->cancelReason,
+            'cancellation_recipients' => $this->cancelRecipients,
+        ];
 
         return $this;
     }
@@ -345,14 +374,16 @@ class BillingoDocument
         return $response->body();
     }
 
-    // public function update($documentId)
-    // {
-    //     try {
-    //         $response = $this->base->put('/documents/'.$documentId, $this->documentData);
-    //     } catch (\Throwable $th) {
-    //         throw $th;
-    //     }
+    public function cancelDocument($documentId)
+    {
+        try {
+            $this->cancelDocumentData();
 
-    //     return $response->body();
-    // }
+            $response = $this->base->post('/documents/'.$documentId.'/cancel', $this->cancelDocumentData);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return $response->body();
+    }
 }
