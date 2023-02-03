@@ -2,33 +2,41 @@
 
 namespace zoparga\BillingoLaravel;
 
-use Illuminate\Support\ServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class BillingoLaravelServiceProvider extends ServiceProvider
+class BillingoLaravelServiceProvider extends PackageServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
+    public function configurePackage(Package $package): void
     {
-        $this->app->bind('billingolaravel', function ($app) {
-            return new Billingo();
-        });
+        $package->name('billingolaravel')
+            ->hasConfigFile(['billingo-laravel'])
+            ->hasMigration('create_package_tables');
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/../config/billingo-laravel.php' => config_path('billingo-laravel.php'),
-            ], 'config');
-        }
-    }
+    // /**
+    //  * Register services.
+    //  *
+    //  * @return void
+    //  */
+    // public function register()
+    // {
+    //     $this->app->bind('billingolaravel', function ($app) {
+    //         return new Billingo();
+    //     });
+    // }
+
+    // /**
+    //  * Bootstrap services.
+    //  *
+    //  * @return void
+    //  */
+    // public function boot()
+    // {
+    //     if ($this->app->runningInConsole()) {
+    //         $this->publishes([
+    //             __DIR__.'/../config/billingo-laravel.php' => config_path('billingo-laravel.php'),
+    //         ], 'config');
+    //     }
+    // }
 }
